@@ -256,11 +256,11 @@ LOT_ACRES = 0.84  # DEAL-SPECIFIC (LOT_SF / 43560)
 YEAR_BUILT = 1961  # DEAL-SPECIFIC
 TAX_RATE = 0.0  # DEAL-SPECIFIC — LIHTC tax exempt per CA Rev & Tax Code 214
 GSR = 619_752  # DEAL-SPECIFIC — corrected: unit-by-unit (occupied actual + vacant/mgr at market)
-PF_GSR = 1_272_036  # DEAL-SPECIFIC — S8 payment standards for all 39 units annualized
+PF_GSR = 906_600  # DEAL-SPECIFIC — 2025 CTCAC 60% AMI max rents for all 39 units annualized
 VACANCY_PCT = 0.05  # DEAL-SPECIFIC
 OTHER_INCOME = 11_844  # DEAL-SPECIFIC — laundry $9,882 + RSO/SCEP pass-throughs $1,962
 NON_TAX_CUR_EXP = 243_500  # DEAL-SPECIFIC — all expenses (tax exempt). Verified in 06_Final_Build_Calculations.md
-NON_TAX_PF_EXP = 269_591  # DEAL-SPECIFIC — PF expenses (mgmt at 4% of PF GSR $1,272,036 = $50,881; all other same)
+NON_TAX_PF_EXP = 254_974  # DEAL-SPECIFIC — PF expenses (mgmt at 4% of PF GSR $906,600 = $36,264; all other same: $243,500 - $24,790 + $36,264)
 
 # Financing
 INTEREST_RATE = 0.0585  # DEAL-SPECIFIC — matches Serrano comp (IO)
@@ -361,48 +361,48 @@ if LIST_PRICE > 0:
 
 # Rent Roll — 6-tuple: (unit, type, sf, current_rent, scheduled_rent, proforma_rent)
 # Current = actual collected ($0 for vacants/manager)
-# Scheduled = GSR basis (vacants + manager at LIHTC max)
-# Pro Forma = Section 8 Payment Standards for 91335
+# Scheduled = GSR basis (vacants + manager at in-place LIHTC rents)
+# Pro Forma = 2025 CTCAC 60% AMI max rents: Studio $1,590, 1BR $1,704, 2BR $2,044, 3BR $2,363
 RENT_ROLL = [
-    ("01", "2BR/1BA", 850, 1167, 1167, 2887),
-    ("02", "3BR/1.5BA", 1335, 1297, 1297, 3668),
-    ("03", "2BR/1BA", 1335, 1307, 1307, 2887),
-    ("04", "2BR/1BA", 850, 1222, 1222, 2887),
-    ("05", "3BR/1.5BA", 1050, 1297, 1297, 3668),
-    ("06", "2BR/1BA", 850, 1134, 1134, 2887),
-    ("07", "2BR/1BA", 850, 1307, 1307, 2887),
-    ("08", "2BR/1BA", 850, 1440, 1440, 2887),
-    ("09", "2BR/1BA", 850, 1759, 1759, 2887),
-    ("10", "3BR/1.5BA", 1050, 1519, 1519, 3668),
-    ("11", "2BR/1BA", 850, 1210, 1210, 2887),
-    ("12", "2BR/1BA", 850, 0, 1952, 2887),
-    ("14", "3BR/1.5BA", 1050, 2240, 2240, 3668),
-    ("15", "2BR/1BA", 850, 1167, 1167, 2887),
-    ("16", "2BR/1BA", 850, 1122, 1122, 2887),
-    ("17", "Studio", 500, 1674, 1674, 2041),
-    ("18", "1BR/1BA", 700, 1718, 1718, 2289),
-    ("19", "2BR/1BA", 850, 1086, 1086, 2887),
-    ("20", "1BR/1BA", 700, 1087, 1087, 2289),
-    ("21", "2BR/1BA (Mgr)", 850, 0, 1952, 2887),
-    ("22", "1BR/1BA", 700, 993, 993, 2289),
-    ("23", "1BR/1BA", 700, 1129, 1129, 2289),
-    ("24", "1BR/1BA", 700, 1201, 1201, 2289),
-    ("25", "2BR/1BA", 850, 1271, 1271, 2887),
-    ("26", "2BR/1BA", 850, 1238, 1238, 2887),
-    ("27", "Studio", 500, 915, 915, 2041),
-    ("28", "2BR/1BA", 850, 1100, 1100, 2887),
-    ("29", "1BR/1BA", 700, 1464, 1464, 2289),
-    ("30", "1BR/1BA", 700, 0, 1631, 2289),
-    ("31", "2BR/1BA", 850, 1269, 1269, 2887),
-    ("32", "2BR/1BA", 850, 1029, 1029, 2887),
-    ("33", "1BR/1BA", 700, 839, 839, 2289),
-    ("34", "1BR/1BA", 700, 1087, 1087, 2289),
-    ("35", "1BR/1BA", 700, 1268, 1268, 2289),
-    ("36", "2BR/1BA", 850, 1307, 1307, 2887),
-    ("37", "1BR/1BA", 700, 0, 1631, 2289),
-    ("38", "2BR/1BA", 850, 979, 979, 2887),
-    ("39", "1BR/1BA", 700, 1668, 1668, 2289),
-    ("40", "Studio", 500, 970, 970, 2041),
+    ("01", "2BR/1BA", 850, 1167, 1167, 2044),
+    ("02", "3BR/1.5BA", 1335, 1297, 1297, 2363),
+    ("03", "2BR/1BA", 1335, 1307, 1307, 2044),
+    ("04", "2BR/1BA", 850, 1222, 1222, 2044),
+    ("05", "3BR/1.5BA", 1050, 1297, 1297, 2363),
+    ("06", "2BR/1BA", 850, 1134, 1134, 2044),
+    ("07", "2BR/1BA", 850, 1307, 1307, 2044),
+    ("08", "2BR/1BA", 850, 1440, 1440, 2044),
+    ("09", "2BR/1BA", 850, 1759, 1759, 2044),
+    ("10", "3BR/1.5BA", 1050, 1519, 1519, 2363),
+    ("11", "2BR/1BA", 850, 1210, 1210, 2044),
+    ("12", "2BR/1BA", 850, 0, 1952, 2044),
+    ("14", "3BR/1.5BA", 1050, 2240, 2240, 2363),
+    ("15", "2BR/1BA", 850, 1167, 1167, 2044),
+    ("16", "2BR/1BA", 850, 1122, 1122, 2044),
+    ("17", "Studio", 500, 1674, 1674, 1590),
+    ("18", "1BR/1BA", 700, 1718, 1718, 1704),
+    ("19", "2BR/1BA", 850, 1086, 1086, 2044),
+    ("20", "1BR/1BA", 700, 1087, 1087, 1704),
+    ("21", "2BR/1BA (Mgr)", 850, 0, 1952, 2044),
+    ("22", "1BR/1BA", 700, 993, 993, 1704),
+    ("23", "1BR/1BA", 700, 1129, 1129, 1704),
+    ("24", "1BR/1BA", 700, 1201, 1201, 1704),
+    ("25", "2BR/1BA", 850, 1271, 1271, 2044),
+    ("26", "2BR/1BA", 850, 1238, 1238, 2044),
+    ("27", "Studio", 500, 915, 915, 1590),
+    ("28", "2BR/1BA", 850, 1100, 1100, 2044),
+    ("29", "1BR/1BA", 700, 1464, 1464, 1704),
+    ("30", "1BR/1BA", 700, 0, 1631, 1704),
+    ("31", "2BR/1BA", 850, 1269, 1269, 2044),
+    ("32", "2BR/1BA", 850, 1029, 1029, 2044),
+    ("33", "1BR/1BA", 700, 839, 839, 1704),
+    ("34", "1BR/1BA", 700, 1087, 1087, 1704),
+    ("35", "1BR/1BA", 700, 1268, 1268, 1704),
+    ("36", "2BR/1BA", 850, 1307, 1307, 2044),
+    ("37", "1BR/1BA", 700, 0, 1631, 1704),
+    ("38", "2BR/1BA", 850, 979, 979, 2044),
+    ("39", "1BR/1BA", 700, 1668, 1668, 1704),
+    ("40", "Studio", 500, 970, 970, 1590),
 ]
 
 # Sale Comps
@@ -547,7 +547,7 @@ ON_MARKET_NARRATIVE = ""  # No LIHTC properties currently listed
 # Pricing Rationale (2-3 paragraphs, anchored to tier-weighted comp analysis)
 # P1: Anchor to Tier 1 weighted average. P2: Most recent data + confidence. P3 (optional): Limitations.
 PRICING_RATIONALE = """We are recommending a list price of $5,950,000, or $152,564 per unit, which positions the property below every comparable sale in the dataset. Our team's Serrano Avenue closing in February 2026 traded at $180,952 per unit, and our Roscoe Boulevard escrow is at $200,000 per unit. Both of those properties carry permanent LIHTC restrictions through 2050 and beyond. Kittridge's restrictions expire in approximately 21 months, giving buyers something neither of those comps offered: a clear path to market rents. That optionality, priced at a discount, is the core value proposition.</p>
-<p class='narrative'>The current NOI of $357,108 delivers a 6.00% cap rate at list price with a 1.58x debt service coverage ratio on 65% LTV interest-only financing at 5.85%, modeled directly off the Serrano loan terms. Cash-on-cash return starts at 5.50% on day one. Post-expiration, Section 8 payment standards in the 91335 zip code range from $2,041 to $3,668 per month, roughly double the current restricted rents. At those payment standards, the pro forma NOI reaches $950,687, pushing returns above 30% cash-on-cash. Vista Park Apartments next door already achieves $1,500 to $2,100 in unrestricted rents, confirming the submarket supports these levels.</p>
+<p class='narrative'>The current NOI of $357,108 delivers a 6.00% cap rate at list price with a 1.58x debt service coverage ratio on 65% LTV interest-only financing at 5.85%, modeled directly off the Serrano loan terms. The pro forma underwriting uses 2025 CTCAC maximum allowable rents at 60% AMI ($1,590 to $2,363 per month by unit type), which represent the regulatory ceiling for this property's covenant. At those rent levels, pro forma NOI increases meaningfully, reflecting the embedded upside from in-place rents running below current LIHTC maximums. Vista Park Apartments next door already achieves $1,500 to $2,100 in unrestricted market rents, confirming the submarket supports these levels and beyond.</p>
 <p class='narrative'>The $5,700,000 to $6,200,000 trade range accounts for buyer type. A syndicator pursuing resyndication will underwrite to restricted rents and pay toward the lower end. A private buyer underwriting to Section 8 conversion will see a generational basis at under $153,000 per unit in a neighborhood absorbing over $100M in public investment. Either way, the property clears the market inside this range."""
 
 # Comp analysis confidence level — from COMP_ANALYSIS_PROTOCOL.md
@@ -690,7 +690,7 @@ IMG["rent_map_static"] = generate_static_map(SUBJECT_LAT, SUBJECT_LNG, rent_mark
 # GENERATE DYNAMIC TABLE HTML
 # ============================================================
 
-# Rent Roll — 3-column format (Current / Scheduled / Pro Forma)
+# Rent Roll — 3-column format (Current / Scheduled + $/SF / Pro Forma + $/SF)
 rent_roll_html = ""
 total_current = 0
 total_scheduled = 0
@@ -702,9 +702,11 @@ for unit, utype, sf, cur_rent, sched_rent, pf_rent in RENT_ROLL:
     total_proforma += pf_rent
     total_sf += sf
     cur_display = f'${cur_rent:,}' if cur_rent > 0 else '<span style="color:#999">$0</span>'
-    rent_roll_html += f'<tr><td>{unit}</td><td>{utype}</td><td class="num">{sf:,}</td><td class="num">{cur_display}</td><td class="num">${sched_rent:,}</td><td class="num">${pf_rent:,}</td></tr>\n'
-rent_roll_html += f'<tr style="background:#1B3A5C;color:#fff;font-weight:700;"><td>Total</td><td>{len(RENT_ROLL)} Units</td><td class="num">{total_sf:,}</td><td class="num">${total_current:,}</td><td class="num">${total_scheduled:,}</td><td class="num">${total_proforma:,}</td></tr>\n'
-rent_roll_html += f'<tr style="background:#1B3A5C;color:#C5A258;font-weight:700;"><td></td><td>Annualized</td><td></td><td class="num">${total_current*12:,}</td><td class="num">${total_scheduled*12:,}</td><td class="num">${total_proforma*12:,}</td></tr>\n'
+    sched_psf = f'${sched_rent/sf:.2f}' if sf > 0 else '--'
+    pf_psf = f'${pf_rent/sf:.2f}' if sf > 0 else '--'
+    rent_roll_html += f'<tr><td>{unit}</td><td>{utype}</td><td class="num">{sf:,}</td><td class="num">{cur_display}</td><td class="num">${sched_rent:,}</td><td class="num">{sched_psf}</td><td class="num">${pf_rent:,}</td><td class="num">{pf_psf}</td></tr>\n'
+rent_roll_html += f'<tr style="background:#1B3A5C;color:#fff;font-weight:700;"><td>Total</td><td>{len(RENT_ROLL)} Units</td><td class="num">{total_sf:,}</td><td class="num">${total_current:,}</td><td class="num">${total_scheduled:,}</td><td class="num">${total_scheduled/total_sf:.2f}</td><td class="num">${total_proforma:,}</td><td class="num">${total_proforma/total_sf:.2f}</td></tr>\n'
+rent_roll_html += f'<tr style="background:#1B3A5C;color:#C5A258;font-weight:700;"><td></td><td>Annualized</td><td></td><td class="num">${total_current*12:,}</td><td class="num">${total_scheduled*12:,}</td><td></td><td class="num">${total_proforma*12:,}</td><td></td></tr>\n'
 
 # Sale Comp Table — sorted by tier (Tier 1 first, LAAA sales first within tier)
 sale_comp_html = ""
@@ -1756,7 +1758,7 @@ html_parts.append(f"""
 # PAGE 12: FINANCIAL ANALYSIS — RENT ROLL
 # ============================================================
 if PROPERTY_TYPE == "value-add":
-    rr_header = '<thead><tr><th>Unit</th><th>Type</th><th class="num">SF</th><th class="num">Current</th><th class="num">Scheduled</th><th class="num">Pro Forma (S8)</th></tr></thead>'
+    rr_header = '<thead><tr><th>Unit</th><th>Type</th><th class="num">SF</th><th class="num">Current</th><th class="num">Scheduled</th><th class="num">Rent/SF</th><th class="num">Pro Forma</th><th class="num">Rent/SF</th></tr></thead>'
 else:
     rr_header = '<thead><tr><th>Unit</th><th>Type</th><th class="num">SF</th><th class="num">Rent/Mo</th><th class="num">Rent/SF</th><th>Status</th><th>Notes</th></tr></thead>'
 
@@ -1910,7 +1912,6 @@ html_parts.append(f"""
       <div class="summary-trade-prices">${TRADE_RANGE_LOW:,} &mdash; ${TRADE_RANGE_HIGH:,}</div>
     </div>
     <h3 class="sub-heading">Pricing Rationale</h3>
-    <div style="margin-bottom:8px;"><span style="display:inline-block;padding:3px 10px;border-radius:3px;font-size:11px;font-weight:600;letter-spacing:0.5px;color:#fff;background:{'#2E7D32' if COMP_CONFIDENCE == 'HIGH' else '#E65100' if COMP_CONFIDENCE == 'LOW' else '#1565C0'};">{COMP_CONFIDENCE} CONFIDENCE</span> <span style="font-size:11px;color:#666;">Based on comparable sales analysis</span></div>
     <p>{PRICING_RATIONALE}</p>
     <div class="condition-note"><strong>Assumptions &amp; Conditions:</strong> {ASSUMPTIONS_DISCLAIMER}</div>
   </div>
