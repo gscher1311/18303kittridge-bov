@@ -340,8 +340,8 @@ def calc_metrics(price):
 # min_inc = gap/4, max_inc = gap/3
 # Pick smallest clean value in [min_inc, max_inc]: 25K, 50K, 75K, 100K, 150K, 200K, 250K
 INCREMENT = 100_000  # DEAL-SPECIFIC
-# Custom range: $6M down to $5M plus suggested list at $5,950,000
-MATRIX_PRICES = [6_000_000, 5_950_000, 5_900_000, 5_800_000, 5_700_000, 5_600_000, 5_500_000, 5_400_000, 5_300_000, 5_200_000, 5_100_000, 5_000_000]
+# Custom range: $6.2M down to $5M plus suggested list at $5,950,000
+MATRIX_PRICES = [6_200_000, 6_100_000, 6_000_000, 5_950_000, 5_900_000, 5_800_000, 5_700_000, 5_600_000, 5_500_000, 5_400_000, 5_300_000, 5_200_000, 5_100_000, 5_000_000]
 MATRIX = [calc_metrics(p) for p in MATRIX_PRICES]
 AT_LIST = calc_metrics(LIST_PRICE)
 
