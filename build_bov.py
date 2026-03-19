@@ -281,20 +281,13 @@ def calc_loan_constant(rate, amort):
     monthly = r * (1 + r)**n / ((1 + r)**n - 1)
     return monthly * 12
 
-LOAN_CONSTANT = calc_loan_constant(INTEREST_RATE, AMORTIZATION_YEARS)
+# INTEREST-ONLY LOAN — override loan constant to just the rate
+# IO debt service = loan_amount * interest_rate (no amortization)
+LOAN_CONSTANT = INTEREST_RATE  # For IO: annual DS = loan * rate
 
 def calc_principal_reduction_yr1(loan_amount, annual_rate, amort_years):
-    r = annual_rate / 12
-    n = amort_years * 12
-    monthly_pmt = loan_amount * (r * (1 + r)**n) / ((1 + r)**n - 1)
-    balance = loan_amount
-    total_principal = 0
-    for _ in range(12):
-        interest = balance * r
-        principal = monthly_pmt - interest
-        total_principal += principal
-        balance -= principal
-    return total_principal
+    # Interest-only loan — no principal reduction
+    return 0
 
 def calc_metrics(price):
     taxes = price * TAX_RATE
@@ -523,7 +516,7 @@ MISSION_P3 = "With over 500 closed transactions and $1.6 billion in sales volume
 
 # Buyer Profile
 BUYER_TYPES = [
-    ("LIHTC Resyndication Buyers", "Syndicators and developers seeking new 4% tax credit allocations, tax-exempt bond financing, and LAHD grants. The Roscoe Boulevard buyer at $206,000/unit employed this exact strategy, applying for new CDLAC bonds and CTCAC credits while securing an LAHD grant."),
+    ("LIHTC Resyndication Buyers", "Syndicators and developers seeking new 4% tax credit allocations, tax-exempt bond financing, and LAHD grants. The Roscoe Boulevard buyer at $200,000/unit employed this exact strategy, applying for new CDLAC bonds and CTCAC credits while securing an LAHD grant."),
     ("Market Conversion Investors", "Private investors positioning to raise rents to unrestricted market levels after LIHTC restrictions expire in December 2027. With RSO vacancy decontrol, market-rate rents can be achieved on unit turnover, generating 10-31% income growth over time."),
     ("Affordable Housing Operators", "Mission-driven organizations and nonprofits seeking stabilized affordable housing assets with established tenant bases, Section 8 voucher income, and professional management infrastructure already in place."),
 ]
@@ -808,10 +801,10 @@ CUR_EGI = AT_LIST["cur_egi"]
 os_income_html = ""
 vacancy_amt = GSR * VACANCY_PCT
 eri = GSR - vacancy_amt
-os_income_html += f'<tr><td>Gross Scheduled Rent</td><td class="num">${GSR:,.0f}</td><td class="num">${GSR/UNITS:,.0f}</td><td class="num">${GSR/SF:.2f}</td><td class="num"> - </td></tr>\n'
-os_income_html += f'<tr><td>Less: Vacancy ({VACANCY_PCT*100:.0f}%)</td><td class="num">$({vacancy_amt:,.0f})</td><td class="num">$({vacancy_amt/UNITS:,.0f})</td><td class="num">$({vacancy_amt/SF:.2f})</td><td class="num"> - </td></tr>\n'
+os_income_html += f'<tr><td>Gross Scheduled Rent <span class="note-ref">[1]</span></td><td class="num">${GSR:,.0f}</td><td class="num">${GSR/UNITS:,.0f}</td><td class="num">${GSR/SF:.2f}</td><td class="num"> - </td></tr>\n'
+os_income_html += f'<tr><td>Less: Vacancy ({VACANCY_PCT*100:.0f}%) <span class="note-ref">[2]</span></td><td class="num">$({vacancy_amt:,.0f})</td><td class="num">$({vacancy_amt/UNITS:,.0f})</td><td class="num">$({vacancy_amt/SF:.2f})</td><td class="num"> - </td></tr>\n'
 if OTHER_INCOME > 0:
-    os_income_html += f'<tr><td>Other Income <span class="note-ref">[1]</span></td><td class="num">${OTHER_INCOME:,.0f}</td><td class="num">${OTHER_INCOME/UNITS:,.0f}</td><td class="num">${OTHER_INCOME/SF:.2f}</td><td class="num"> - </td></tr>\n'
+    os_income_html += f'<tr><td>Other Income <span class="note-ref">[3]</span></td><td class="num">${OTHER_INCOME:,.0f}</td><td class="num">${OTHER_INCOME/UNITS:,.0f}</td><td class="num">${OTHER_INCOME/SF:.2f}</td><td class="num"> - </td></tr>\n'
 os_income_html += f'<tr class="summary"><td><strong>Effective Gross Income</strong></td><td class="num"><strong>${CUR_EGI:,.0f}</strong></td><td class="num"><strong>${CUR_EGI/UNITS:,.0f}</strong></td><td class="num"><strong>${CUR_EGI/SF:.2f}</strong></td><td class="num"><strong>100.0%</strong></td></tr>\n'
 
 os_expense_html = ""
@@ -1840,10 +1833,10 @@ html_parts.append(f"""
           <thead><tr><th colspan="2" class="summary-header">FINANCING</th></tr></thead>
           <tbody>
             <tr><td>Loan Amount</td><td class="num">${m['loan_amount']:,.0f}</td></tr>
-            <tr><td>Loan Type</td><td class="num">Fixed</td></tr>
+            <tr><td>Loan Type</td><td class="num">Interest Only</td></tr>
             <tr><td>Interest Rate</td><td class="num">{INTEREST_RATE*100:.2f}%</td></tr>
-            <tr><td>Amortization</td><td class="num">{AMORTIZATION_YEARS} Years</td></tr>
-            <tr><td>Loan Constant</td><td class="num">{LOAN_CONSTANT*100:.2f}%</td></tr>
+            <tr><td>Structure</td><td class="num">Interest Only</td></tr>
+            <tr><td>Rate Adjusts</td><td class="num">2031 (5 Yr)</td></tr>
             <tr><td>LTV ({m['loan_constraint']})</td><td class="num">{m['actual_ltv']*100:.1f}%</td></tr>
             <tr><td>DSCR</td><td class="num">{m['dcr_cur']:.2f}x</td></tr>
           </tbody>
