@@ -269,8 +269,8 @@ MAX_LTV = 0.65  # DEAL-SPECIFIC — matches Serrano comp
 MIN_DCR = 1.25  # DEAL-SPECIFIC
 
 # Trade range
-TRADE_RANGE_LOW = 5_700_000  # DEAL-SPECIFIC
-TRADE_RANGE_HIGH = 6_200_000  # DEAL-SPECIFIC
+TRADE_RANGE_LOW = 5_300_000  # DEAL-SPECIFIC
+TRADE_RANGE_HIGH = 5_900_000  # DEAL-SPECIFIC
 
 # ============================================================
 # FINANCIAL HELPER FUNCTIONS
@@ -340,8 +340,8 @@ def calc_metrics(price):
 # min_inc = gap/4, max_inc = gap/3
 # Pick smallest clean value in [min_inc, max_inc]: 25K, 50K, 75K, 100K, 150K, 200K, 250K
 INCREMENT = 100_000  # DEAL-SPECIFIC
-# Custom range: $6.2M down to $5M plus suggested list at $5,950,000
-MATRIX_PRICES = [6_200_000, 6_100_000, 6_000_000, 5_950_000, 5_900_000, 5_800_000, 5_700_000, 5_600_000, 5_500_000, 5_400_000, 5_300_000, 5_200_000, 5_100_000, 5_000_000]
+# Custom range: $6M down to $5M plus suggested list at $5,950,000
+MATRIX_PRICES = [6_000_000, 5_950_000, 5_900_000, 5_800_000, 5_700_000, 5_600_000, 5_500_000, 5_400_000, 5_300_000, 5_200_000, 5_100_000, 5_000_000]
 MATRIX = [calc_metrics(p) for p in MATRIX_PRICES]
 AT_LIST = calc_metrics(LIST_PRICE)
 
@@ -541,7 +541,7 @@ ON_MARKET_NARRATIVE = ""  # No LIHTC properties currently listed
 # P1: Anchor to Tier 1 weighted average. P2: Most recent data + confidence. P3 (optional): Limitations.
 PRICING_RATIONALE = """We are recommending a list price of $5,950,000, or $152,564 per unit, which positions the property below every comparable sale in the dataset. Our team's Serrano Avenue closing in February 2026 traded at $180,952 per unit, and our Roscoe Boulevard escrow is at $200,000 per unit. Both of those properties carry permanent LIHTC restrictions through 2050 and beyond. Kittridge's restrictions expire in approximately 21 months, giving buyers something neither of those comps offered: a clear path to market rents. That optionality, priced at a discount, is the core value proposition.</p>
 <p class='narrative'>The current NOI of $357,108 delivers a 6.00% cap rate at list price with a 1.58x debt service coverage ratio on 65% LTV interest-only financing at 5.85%, modeled directly off the Serrano loan terms. The pro forma underwriting uses 2025 CTCAC maximum allowable rents at 60% AMI ($1,590 to $2,363 per month by unit type), which represent the regulatory ceiling for this property's covenant. At those rent levels, pro forma NOI increases meaningfully, reflecting the embedded upside from in-place rents running below current LIHTC maximums. Vista Park Apartments next door already achieves $1,500 to $2,100 in unrestricted market rents, confirming the submarket supports these levels and beyond.</p>
-<p class='narrative'>The $5,700,000 to $6,200,000 trade range accounts for buyer type. A syndicator pursuing resyndication will underwrite to restricted rents and pay toward the lower end. A private buyer underwriting to Section 8 conversion will see a generational basis at under $153,000 per unit in a neighborhood absorbing over $100M in public investment. Either way, the property clears the market inside this range."""
+<p class='narrative'>The $5,300,000 to $5,900,000 trade range accounts for buyer type. A syndicator pursuing resyndication will underwrite to restricted rents and pay toward the lower end. A private buyer underwriting to Section 8 conversion will see a generational basis at under $153,000 per unit in a neighborhood absorbing over $100M in public investment. Either way, the property clears the market inside this range."""
 
 # Comp analysis confidence level — from COMP_ANALYSIS_PROTOCOL.md
 # "HIGH", "MODERATE", or "LOW" — displayed as badge in pricing section
